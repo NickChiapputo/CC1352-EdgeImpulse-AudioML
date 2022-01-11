@@ -1,0 +1,1 @@
+"./bumpSensors.obj" "./main.obj" "./motor.obj" "./startup_msp432p401r_ccs.obj" "./system_msp432p401r.obj" "./tachometer.obj" "./uart.obj" "../msp432p401r.cmd" "/home/nick/ti/ccs_workspace/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/ccs/msp432p4xx_driverlib.lib" -llibc.a 
