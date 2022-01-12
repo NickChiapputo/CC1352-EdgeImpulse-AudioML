@@ -36,9 +36,6 @@ uint8_t currentLED = RED_LED;
 
 void main(void)
 {
-    char str[ 100 ];
-    uint8_t data;
-
     initDevice_HFXT();
     initHeartBeatLED();
     initUART();
@@ -56,7 +53,6 @@ void main(void)
     while(1)
     {
         // Check status of control LED.
-        uart0_transmitStr( str );
         if( GPIO_getInputPinValue( TRANSMISSION_VALID_PORT, TRANSMISSION_VALID_PIN ) == 1 )
         {
 	        if( GPIO_getInputPinValue( MOTION_CONTROL_PORT, MOTION_CONTROL_PIN ) == 1 )
