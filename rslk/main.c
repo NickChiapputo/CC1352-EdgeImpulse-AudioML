@@ -22,6 +22,8 @@
 #define MOTOR_STOP      0
 #define MOTOR_BACKWARD  -1
 
+#define MOTOR_GO_SPEED	20
+
 #define TRANSMISSION_VALID_PORT GPIO_PORT_P2
 #define TRANSMISSION_VALID_PIN  GPIO_PIN4
 #define MOTION_CONTROL_PORT     GPIO_PORT_P2
@@ -36,9 +38,6 @@ uint8_t currentLED = RED_LED;
 
 void main(void)
 {
-    char str[ 100 ];
-    uint8_t data;
-
     initDevice_HFXT();
     initHeartBeatLED();
     initUART();
@@ -56,7 +55,6 @@ void main(void)
     while(1)
     {
         // Check status of control LED.
-        uart0_transmitStr( str );
         if( GPIO_getInputPinValue( TRANSMISSION_VALID_PORT, TRANSMISSION_VALID_PIN ) == 1 )
         {
 	        if( GPIO_getInputPinValue( MOTION_CONTROL_PORT, MOTION_CONTROL_PIN ) == 1 )
@@ -70,8 +68,8 @@ void main(void)
 	        else
 	        {
 	            // Start vehicle.
-	            setMotorDutyCycle( LEFT_MOTOR, 20 );
-	            setMotorDutyCycle( RIGHT_MOTOR, 20 );
+	            setMotorDutyCycle( LEFT_MOTOR, MOTOR_GO_SPEED );
+	            setMotorDutyCycle( RIGHT_MOTOR, MOTOR_GO_SPEED );
 	            currentLED = GREEN_LED;
 	            GPIO_setOutputHighOnPin( GPIO_PORT_P1, GPIO_PIN0 );
 	        }
